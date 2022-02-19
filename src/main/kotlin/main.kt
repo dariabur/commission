@@ -1,16 +1,17 @@
+const val conv: Int = 100
 fun main(){
     val recentAmount = 10000
     val monthlyAmount = 76000
     val cardType = "Visa"
+    val res = commission(cardType, monthlyAmount, recentAmount) /conv
 
-    commission(cardType, monthlyAmount, recentAmount)
+    println("Комиссия за перевод составила $res рублей")
 }
 
-fun commission(cardType:String, amountForMonth:Int = 0, amount:Int){
-    var requiredCommission = 0.0
+fun commission(cardType:String = "Vk Pay", amountForMonth:Int = 0, amount:Int):Double{
+    val requiredCommission:Double
     val minCommissionVisaMir = 3500
     var result = 0.0
-
     when (cardType) {
         "Visa", "Мир" -> {
             requiredCommission = 0.75
@@ -30,5 +31,5 @@ fun commission(cardType:String, amountForMonth:Int = 0, amount:Int){
         }
         "Vk Pay" ->  result = 0.0
     }
-    println("Комиссия за перевод составила: " + (result / 100) + " рублей")
+    return result
 }
